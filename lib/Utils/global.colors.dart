@@ -6,5 +6,6 @@ class GlobalColors{
   static HexColor mainColor = HexColor('#CB8461');
   static HexColor textColor = HexColor('#49516F');
   
+  
 
 }

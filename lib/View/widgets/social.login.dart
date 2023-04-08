@@ -11,7 +11,7 @@ class SocialLogin extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-              '-Or Sign Up Wirh-',
+              '-Or Sign Up With-',
               style: TextStyle(
                 color: GlobalColors.mainColor,
                 fontWeight: FontWeight.w600,
