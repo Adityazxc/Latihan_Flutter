@@ -1,8 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:project_flutter/Utils/global.colors.dart';
-import 'package:project_flutter/View/widgets/button.global.dart';
+import 'package:project_flutter/View/widgets/button/button.global.dart';
 import 'package:project_flutter/View/widgets/social.login.dart';
 import 'package:project_flutter/View/widgets/text.form.global.dart';
 
@@ -24,9 +22,16 @@ class LoginView extends StatelessWidget {
               children: [
                 const SizedBox(height: 50),
                 Container(
-                  alignment: Alignment.center,
-                  child: Image.asset('assets/logo_galakita.png'),
-                ),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Image(image: AssetImage('assets/logo_galakita.png')),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text('The Invitation is all yours'),
+                      ],
+                    )),
                 const SizedBox(height: 50),
                 Text(
                   'Login to your account ',

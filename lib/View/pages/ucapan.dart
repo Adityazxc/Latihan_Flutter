@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profile/profile.dart';
-import 'package:project_flutter/View/widgets/button.global.dart';
+import 'package:project_flutter/View/widgets/button/button.global.dart';
 
 import '../../Utils/global.colors.dart';
 

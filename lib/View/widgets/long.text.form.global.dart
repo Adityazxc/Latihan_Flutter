@@ -7,11 +7,13 @@ class LongTextFormGlobal extends StatelessWidget {
       required this.text,
       required this.error,
       required this.textInputType,
-      required this.obscure});
+      required this.obscure,
+      required this.maxCharacter});
   final TextEditingController controller;
   final String text, error;
   final TextInputType textInputType;
   final bool obscure;
+  final int maxCharacter;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class LongTextFormGlobal extends StatelessWidget {
         },
         controller: controller,
         maxLines: 5,
+        maxLength: maxCharacter,
         keyboardType: TextInputType.multiline,
         obscureText: obscure,
         decoration: InputDecoration(

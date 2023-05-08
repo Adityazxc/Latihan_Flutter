@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:project_flutter/Utils/global.colors.dart';
-
+import 'package:project_flutter/View/pages/invitation/form5.dart';
+import 'package:project_flutter/View/widgets/time.form.global.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'form4.dart';
 import '../../widgets/date.form.global.dart';
 import '../../widgets/long.text.form.global.dart';
 import '../../widgets/text.form.global.dart';
@@ -16,15 +17,32 @@ class formTiga extends StatefulWidget {
 
 class _formTigaState extends State<formTiga> {
   final formKey = GlobalKey<FormState>();
-  final TextEditingController mempelaiPria = TextEditingController();
+  final TextEditingController mempelaiPriaController = TextEditingController();
   final TextEditingController mempelaiWanita = TextEditingController();
-  final TextEditingController waktuAkad = TextEditingController();
+  final TextEditingController tanggalPernikahanController =
+      TextEditingController();
   final TextEditingController lokasi = TextEditingController();
   final TextEditingController ceritaCinta = TextEditingController();
   final TextEditingController quote = TextEditingController();
 
+  var _mempelaiPria, _tanggalPernikahan;
+  @override
+  void iniState() {
+    super.initState();
+    tanggalPernikahanController.addListener(_updateText);
+  }
+
+  void _updateText() {
+    setState(() {
+      // _mempelaiPria = mempelaiPriaController.text;
+      _tanggalPernikahan = tanggalPernikahanController;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    int selectedPlan = 0;
+
     return Scaffold(
         body: SingleChildScrollView(
           child: Container(
@@ -42,6 +60,13 @@ class _formTigaState extends State<formTiga> {
                             fontSize: 25,
                             fontWeight: FontWeight.bold),
                       ),
+                      const SizedBox(height: 15),
+                      StepProgressIndicator(
+                        totalSteps: 5,
+                        currentStep: 3,
+                        selectedColor: GlobalColors.mainColor,
+                        unselectedColor: GlobalColors.unselected,
+                      ),
                       const SizedBox(height: 50),
                       Text(
                         'Data Mempelai ',
@@ -54,7 +79,10 @@ class _formTigaState extends State<formTiga> {
                       Container(
                         child: Row(
                           children: [
-                            Icon(Icons.warning),
+                            Icon(
+                              Icons.warning,
+                              color: Colors.amber[400],
+                            ),
                             Text(
                               'Semua data bisa diedit setelah pembayaran',
                               style: TextStyle(
@@ -75,7 +103,7 @@ class _formTigaState extends State<formTiga> {
                       ),
                       const SizedBox(height: 15),
                       TextFormGlobal(
-                        controller: mempelaiPria,
+                        controller: mempelaiPriaController,
                         text: 'Benno',
                         error: "Nama Mempelai Pria tidak boleh kosong",
                         obscure: false,
@@ -107,10 +135,51 @@ class _formTigaState extends State<formTiga> {
                       ),
                       const SizedBox(height: 15),
                       DateFormGlobal(
-                        controller: waktuAkad,
+                        controller: tanggalPernikahanController,
                         text: 'Masukkan tanggal acara',
                         obscure: false,
                         textInputType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 15),
+                      Container(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Jam Mulai ',
+                              style: TextStyle(
+                                  color: GlobalColors.textColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            const SizedBox(width: 130),
+                            Text(
+                              'Jam Selesai ',
+                              style: TextStyle(
+                                  color: GlobalColors.textColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Container(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            TimeFormGlobal(
+                                text: "jam awal",
+                                textInputType: TextInputType.text,
+                                obscure: false),
+                            //untuk memisahkan objek yang berdempetan
+                            Expanded(child: Container()),
+                            TimeFormGlobal(
+                                text: "jam Akhir",
+                                textInputType: TextInputType.text,
+                                obscure: false),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 15),
                       Text(
@@ -139,24 +208,19 @@ class _formTigaState extends State<formTiga> {
                       const SizedBox(height: 15),
                       LongTextFormGlobal(
                         controller: ceritaCinta,
+                        maxCharacter: 250,
                         text: 'blablabla',
                         error: "Cerita Cinta tidak boleh kosong",
                         obscure: false,
                         textInputType: TextInputType.text,
                       ),
                       const SizedBox(height: 15),
-                      Text(
-                        'Quote ',
-                        style: TextStyle(
-                            color: GlobalColors.textColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
                       const SizedBox(height: 15),
                       LongTextFormGlobal(
                         controller: quote,
                         text: 'quote',
                         error: "Quote tidak boleh kosong",
+                        maxCharacter: 150,
                         obscure: false,
                         textInputType: TextInputType.text,
                       ),
@@ -184,18 +248,25 @@ class _formTigaState extends State<formTiga> {
             padding: EdgeInsets.only(left: 30),
             child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
               FloatingActionButton(
+                backgroundColor: GlobalColors.mainColor,
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Icon(Icons.keyboard_arrow_left),
+                child: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: GlobalColors.mainColor,
+                ),
               ),
               Expanded(child: Container()),
               FloatingActionButton(
+                backgroundColor: GlobalColors.mainColor,
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return formTiga();
+                      return formLima(
+                        tanggalPernikahan: tanggalPernikahanController.text,
+                      );
                     }));
                   } else {}
                 },

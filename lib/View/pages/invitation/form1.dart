@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project_flutter/View/pages/invitation/form2.dart';
 import 'package:project_flutter/View/widgets/text.form.global.dart';
 import '../../../Utils/global.colors.dart';
+import 'package:project_flutter/View/pages/home.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:quickalert/quickalert.dart';
 
 class form extends StatefulWidget {
   form({super.key});
@@ -15,6 +18,20 @@ class _formState extends State<form> {
   final TextEditingController judulUndangan = TextEditingController();
   final TextEditingController alamatWebsite = TextEditingController();
 
+  void showAlert(QuickAlertType quickAlertType) {
+    QuickAlert.show(
+        context: context,
+        type: quickAlertType,
+        title: 'Apakah anda yakin ingin menutup form?',
+        confirmBtnText: 'Yakin',
+        cancelBtnText: 'Tidak',
+        confirmBtnColor: GlobalColors.mainColor,
+        onConfirmBtnTap: () =>
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return HomePage();
+            })));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +42,22 @@ class _formState extends State<form> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 50),
+                InkWell(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 300),
+                        Container(
+                          child: const Icon(
+                            Icons.close,
+                            size: 50,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      showAlert(QuickAlertType.confirm);
+                    }),
+                const SizedBox(height: 20),
                 Text(
                   'Langkah 1 dari 5 ',
                   style: TextStyle(
@@ -33,14 +65,13 @@ class _formState extends State<form> {
                       fontSize: 25,
                       fontWeight: FontWeight.bold),
                 ),
-                // Container(
-                //   child: Row(children: [
-                Divider(
-                  color: Colors.blue[400],
-                  thickness: 5,
+                const SizedBox(height: 15),
+                StepProgressIndicator(
+                  totalSteps: 5,
+                  currentStep: 1,
+                  selectedColor: GlobalColors.mainColor,
+                  unselectedColor: GlobalColors.unselected,
                 ),
-                //   ]),
-                // ),
                 const SizedBox(height: 50),
                 Text(
                   'Judul Undangan ',
@@ -101,6 +132,7 @@ class _formState extends State<form> {
             )),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: GlobalColors.mainColor,
         onPressed: () {
           if (formKey.currentState!.validate()) {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
