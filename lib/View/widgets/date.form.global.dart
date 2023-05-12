@@ -4,11 +4,11 @@ import 'package:intl/intl.dart';
 class DateFormGlobal extends StatefulWidget {
   const DateFormGlobal(
       {super.key,
-      required this.controller,
+      required this.datetimeinput,
       required this.text,
       required this.textInputType,
       required this.obscure});
-  final TextEditingController controller;
+  final TextEditingController datetimeinput;
   final String text;
   final TextInputType textInputType;
   final bool obscure;

@@ -135,7 +135,7 @@ class _formTigaState extends State<formTiga> {
                       ),
                       const SizedBox(height: 15),
                       DateFormGlobal(
-                        controller: tanggalPernikahanController,
+                        datetimeinput: tanggalPernikahanController,
                         text: 'Masukkan tanggal acara',
                         obscure: false,
                         textInputType: TextInputType.text,
