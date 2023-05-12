@@ -34,9 +34,13 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   hexcolor: ^3.0.1
+  image_picker: ^0.8.7+3
   intl: ^0.18.0
+  mobkit_dashed_border: ^0.0.4
   profile: ^0.0.1
+  quickalert: ^1.0.1
   settings_ui: ^2.0.2
+  step_progress_indicator: ^1.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -57,6 +61,7 @@ flutter:
   assets:
     - assets/logo_galakita.png
     - assets/profile.png
+    - assets/thumbanail.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
