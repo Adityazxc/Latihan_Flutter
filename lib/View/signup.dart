@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project_flutter/Utils/global.colors.dart';
-import 'package:project_flutter/View/signup.dart';
 import 'package:project_flutter/View/widgets/button/button.global.dart';
 import 'package:project_flutter/View/widgets/social.login.dart';
 import 'package:project_flutter/View/widgets/text.form.global.dart';
 
-class LoginView extends StatelessWidget {
-  LoginView({super.key});
+class SignupView extends StatelessWidget {
+  SignupView({super.key});
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -26,16 +25,18 @@ class LoginView extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        Image(image: AssetImage('assets/logo_galakita.png')),
+                        Text(
+                          "Sign up",
+                          style: TextStyle(fontSize: 30),
+                        ),
                         SizedBox(
                           height: 15,
                         ),
-                        Text('The Invitation is all yours'),
                       ],
                     )),
                 const SizedBox(height: 50),
                 Text(
-                  'Login to your account ',
+                  'Signup to your account ',
                   style: TextStyle(
                       color: GlobalColors.textColor,
                       fontSize: 16,
@@ -46,8 +47,22 @@ class LoginView extends StatelessWidget {
                 //// Email Input
                 TextFormGlobal(
                     controller: emailController,
+                    text: 'Nama',
+                    error: "Nama Website tidak boleh kosong",
+                    obscure: false,
+                    textInputType: TextInputType.emailAddress),
+                const SizedBox(height: 10),
+                TextFormGlobal(
+                    controller: emailController,
                     text: 'Email',
                     error: "Alamat Website tidak boleh kosong",
+                    obscure: false,
+                    textInputType: TextInputType.emailAddress),
+                const SizedBox(height: 10),
+                TextFormGlobal(
+                    controller: emailController,
+                    text: 'Telepon',
+                    error: "Telepon tidak boleh kosong",
                     obscure: false,
                     textInputType: TextInputType.emailAddress),
 
@@ -56,15 +71,21 @@ class LoginView extends StatelessWidget {
                 TextFormGlobal(
                   controller: passwordController,
                   text: 'Password',
-                  error: "Alamat Website tidak boleh kosong",
+                  error: "Password Website tidak boleh kosong",
                   textInputType: TextInputType.text,
                   obscure: true,
                 ),
+
                 const SizedBox(height: 10),
+                TextFormGlobal(
+                    controller: emailController,
+                    text: 'Konfirmasi Password',
+                    error: "konfirmasi password tidak boleh kosong",
+                    obscure: false,
+                    textInputType: TextInputType.emailAddress),
 
                 const ButtonGlobal(),
                 const SizedBox(height: 25),
-                SocialLogin(),
               ],
             ),
           ),
@@ -73,24 +94,7 @@ class LoginView extends StatelessWidget {
       bottomNavigationBar: Container(
         height: 50,
         alignment: Alignment.center,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text(
-            'Don\'t have an account?',
-          ),
-          InkWell(
-            onTap: () async {
-              Navigator.of(context).pop(MaterialPageRoute(builder: (context) {
-                return SignupView();
-              }));
-            },
-            child: Text(
-              ' Sign up',
-              style: TextStyle(
-                color: GlobalColors.mainColor,
-              ),
-            ),
-          )
-        ]),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: []),
       ),
     );
   }

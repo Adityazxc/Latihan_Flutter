@@ -1,10 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:project_flutter/View/widgets/text.header.package.global.dart';
-import 'package:project_flutter/View/widgets/text.list.plan.global.dart';
 
 import '../../Utils/global.colors.dart';
 

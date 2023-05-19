@@ -6,6 +6,7 @@ import 'package:project_flutter/View/pages/invitation/form1.dart';
 import 'package:project_flutter/View/pages/invitation/form2.dart';
 import 'package:project_flutter/View/pages/invitation/form3.dart';
 import 'package:project_flutter/View/pages/profile.dart';
+import 'package:project_flutter/View/signup.dart';
 
 import 'login.view.dart';
 import 'pages/invitation/form4.dart';
@@ -17,9 +18,9 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 1), () {
-      // Get.to(LoginView());
+      Get.to(SignupView());
 
-      Get.to(formTiga());
+      // Get.to(formTiga());
 
       // Get.to(AdminPage());
     });
