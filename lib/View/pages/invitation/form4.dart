@@ -26,8 +26,18 @@ class _formEmpatState extends State<formEmpat> {
     final XFile? imagePicked =
         await _picker.pickImage(source: ImageSource.gallery);
 
+      
     //convert file Xfile ke file
     image = File(imagePicked!.path);
+
+    setState(() {});
+  }
+  Future getVideo() async {
+    final ImagePicker _picker = ImagePicker();
+
+    //untuk pilih video 
+    final XFile? galleryVideo=
+      await _picker.pickVideo(source: ImageSource.gallery);
 
     setState(() {});
   }
@@ -111,6 +121,7 @@ class _formEmpatState extends State<formEmpat> {
                   },
                 ),
 
+                
                 const SizedBox(height: 20),
                 Text(
                   'Gallery Prewed ',
@@ -120,8 +131,18 @@ class _formEmpatState extends State<formEmpat> {
                       fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 20),
-                const buttonAddFile(caption: 'Max 10 Foto'),
+                InkWell(
+                  child:Container(
+                    child:const buttonAddFile(caption: 'Max 10 Foto'),
+
+                  ),
+                  onTap: ()async{
+                    await getVideo();
+                  },
+                ),
                 const SizedBox(height: 20),
+              
+
                 Text(
                   'Video Preweding (Optional) ',
                   style: TextStyle(
